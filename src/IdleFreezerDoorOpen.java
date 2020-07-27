@@ -1,4 +1,4 @@
-
+package src;
 public class IdleFreezerDoorOpen implements FreezerState {
 
 	private Refrigerator refrigerator ;
@@ -14,8 +14,8 @@ public class IdleFreezerDoorOpen implements FreezerState {
 	@Override
 	public void closeDoor() {
 		refrigerator.setFreezerCoolingTemp(0);
-		refrigerator.setFreezerWarmingTemp(refrigerator.getFreezerRateLossDoorClosed);
-		refrigerator.setFreezerState(IdleFreezerDoorClosed());
+		refrigerator.setFreezerWarmingTemp(refrigerator.getFreezerRateLossDoorClosed());
+		refrigerator.setFreezerState(refrigerator.getIdleFreezerDoorClosed());
 
 	}
 
