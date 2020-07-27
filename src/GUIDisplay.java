@@ -8,5 +8,4 @@ public class GUIDisplay implements ActionListener {
 		// TODO Auto-generated method stub
 
 	}
-
 }
