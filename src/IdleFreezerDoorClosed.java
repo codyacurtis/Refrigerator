@@ -1,16 +1,21 @@
 
 public class IdleFreezerDoorClosed implements FridgeState{
 
+	private Refrigerator refrigerator ;
+	public IdleFreezerDoorClosed(Refrigerator fridge) {
+		refrigerator = fridge;
+	}
+	
 	@Override
 	public void openDoor() {
-		// TODO Auto-generated method stub
-		
+		refrigerator.setFreezerCoolingTemp(0);
+		refrigerator.setFreezerWarmingTemp(refrigerator.getFreezerRateLossDoorOpen);
+		refrigerator.setFreezerState(IdleFreezerDoorOpen());
 	}
 
 	@Override
 	public void CloseDoor() {
-		// TODO Auto-generated method stub
-		
+		//Do nothing
 	}
 
 }
