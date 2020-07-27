@@ -75,7 +75,7 @@ public class Refrigerator {
 		long test = System.currentTimeMillis();
 		if (test >= (20 * 1000)
 				&& (currentFridgeTemp > userFridgeTemp + 2 || currentFridgeTemp < defaultFridgeTemp + 2)) {
-			currentFridgeTemp++;
+			currentFridgeTemp--;
 		}
 	}
 
@@ -83,7 +83,7 @@ public class Refrigerator {
 		long test = System.currentTimeMillis();
 		if (test >= (30 * 1000)
 				&& (currentFreezerTemp > userFreezerTemp + 1 || currentFreezerTemp > defaultFreezerTemp + 1)) {
-			currentFreezerTemp++;
+			currentFreezerTemp--;
 		}
 	}
 
@@ -91,28 +91,28 @@ public class Refrigerator {
 		// can't be greater than ambientTemp
 		long test = System.currentTimeMillis();
 		if (test >= (30 * 1000)) {
-			currentFridgeTemp--;
+			currentFridgeTemp++;
 		}
 	}
 
 	public void freezerDoorCLose() {
 		long test = System.currentTimeMillis();
 		if (test >= (30 * 1000)) {
-			currentFreezerTemp--;
+			currentFreezerTemp++;
 		}
 	}
 
 	public void fridgeDoorOpen() {
 		long test = System.currentTimeMillis();
 		if (test >= (2 * 1000) && currentFridgeTemp <= ambientTemp) {
-			currentFreezerTemp--;
+			currentFreezerTemp++;
 		}
 	}
 
 	public void freezerDoorOpen() {
 		long test = System.currentTimeMillis();
 		if (test >= (1 * 1000) && currentFreezerTemp <= ambientTemp) {
-			currentFreezerTemp--;
+			currentFreezerTemp++;
 		}
 	}
 
