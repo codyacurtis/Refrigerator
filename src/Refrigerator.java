@@ -1,11 +1,9 @@
 
 public class Refrigerator {
-
-	
 	
 	Fridge freezerState;
 	Fridge fridgeState;
-	
+
 	
 	int defaultFridgeTemp;
 	int defaultFreezerTemp;
@@ -18,6 +16,11 @@ public class Refrigerator {
 	int freezerLow = -9;
 	int freezerHigh = 0;
 	int ambientTemp;
+	
+	public Refigerator() {
+		
+	}
+	
 	
 	public int getFridgeTemp() {
 		return currentFridgeTemp;
@@ -35,11 +38,11 @@ public class Refrigerator {
 		ambientTemp = temperature;
 	}
 	
-	public void setUserFridgeTemp(int temperature) {
+	public void setFridgeCoolingTemp(int temperature) {
 		userFridgeTemp = temperature;
 	}
 	
-	public void setUserFreezerTemp(int temperature) {
+	public void setFreezerCoolingTemp(int temperature) {
 		userFreezerTemp = temperature;
 	}
 	
