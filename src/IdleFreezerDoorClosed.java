@@ -1,5 +1,5 @@
 package src;
-public class IdleFreezerDoorClosed implements FridgeState{
+public class IdleFreezerDoorClosed implements FreezerState{
 
 	private Refrigerator refrigerator ;
 	public IdleFreezerDoorClosed(Refrigerator fridge) {
@@ -14,7 +14,7 @@ public class IdleFreezerDoorClosed implements FridgeState{
 	}
 
 	@Override
-	public void CloseDoor() {
+	public void closeDoor() {
 		//Do nothing
 	}
 

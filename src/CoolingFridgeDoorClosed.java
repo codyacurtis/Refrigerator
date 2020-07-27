@@ -15,7 +15,7 @@ public class CoolingFridgeDoorClosed implements FridgeState {
 	}
 
 	@Override
-	public void CloseDoor() {
+	public void closeDoor() {
 		// Do nothing
 
 	}

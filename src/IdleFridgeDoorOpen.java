@@ -13,7 +13,7 @@ public class IdleFridgeDoorOpen implements FridgeState {
 	}
 
 	@Override
-	public void CloseDoor() {
+	public void closeDoor() {
 		refrigerator.setFridgeCoolingTemp(0);
 		refrigerator.setFridgeWarmingTemp(refrigerator.getFridgeRateLossDoorClosed());
 		refrigerator.setFridgeState(refrigerator.getIdleFridgeDoorClosed());
