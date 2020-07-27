@@ -1,4 +1,4 @@
 
-public class GUIButton {
-
+public class GUIButton extends JButton {
+	
 }
