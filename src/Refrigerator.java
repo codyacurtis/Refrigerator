@@ -1,77 +1,111 @@
 package src;
 
-public class Refrigerator {
-
-	public int getFreezerRateLossDoorOpen() {
-		// TODO Auto-generated method stub
-		return 0;
+public class Refrigerator {	
+	int ambientTemp;
+	int currentFreezerTemp;
+	
+	int currentFridgeTemp;
+	int defaultFreezerTemp;
+	int defaultFridgeTemp;
+	int freezerHigh = 0;
+	int freezerLow = -9;
+	int freezerRateLossDoorOpen;
+	int freezerRateLosssDoorClosed;
+	private FreezerState freezerState;
+	int fridgeHigh = 41;
+	int fridgeLow = 37;
+	int fridgeRateLossDoorClosed;
+	
+	int fridgeRateLossDoorOpen;
+	private FridgeState fridgeState;
+	int userFreezerTemp;
+	int userFridgeTemp;
+	
+	public void freezerCooling() {
+		long test = System.currentTimeMillis();
+		if(test >= (30*1000) && (currentFreezerTemp > userFreezerTemp + 1 || currentFreezerTemp > defaultFreezerTemp + 1)) {
+		  currentFreezerTemp++; 
+		}
 	}
 
-	public int getFridgeRateLossDoorOpen() {
-		// TODO Auto-generated method stub
-		return 0;
+	public void freezerDoorCLose() {
+		long test = System.currentTimeMillis();
+		if(test >= (30*1000)) {
+			  currentFreezerTemp--; 
+			}
 	}
 
-	public FreezerState getIdleFreezerDoorOpen() {
-		// TODO Auto-generated method stub
-		return null;
+	public void freezerDoorOpen() {
+		long test = System.currentTimeMillis();
+		if(test >= (1*1000) && currentFreezerTemp <= ambientTemp) {
+			  currentFreezerTemp--; 
+			}
 	}
 
-	public void setFreezerCoolingTemp(int i) {
-		// TODO Auto-generated method stub
-
+	public void fridgeCooling() {
+		long test = System.currentTimeMillis();
+		if(test >= (20*1000) && (currentFridgeTemp > userFridgeTemp + 2 || currentFridgeTemp < defaultFridgeTemp + 2)) {
+		  currentFridgeTemp++; 
+		}
 	}
 
-	public void setFreezerState(FreezerState freezerState) {
-		// TODO Auto-generated method stub
-
+	public void fridgeDoorClose() {
+		//can't be greater than ambientTemp
+		long test = System.currentTimeMillis();
+		if(test >= (30*1000)) {
+			  currentFridgeTemp--; 
+			}
 	}
 
-	public void setFreezerWarmingTemp(int i) {
-		// TODO Auto-generated method stub
-
+	public void fridgeDoorOpen() {
+		long test = System.currentTimeMillis();
+		if(test >= (2*1000) && currentFridgeTemp <= ambientTemp) {
+			  currentFreezerTemp--; 
+			}
+	}
+	
+	public int getAmbientTemp() {
+		return ambientTemp;
+	}
+	
+	public int getFreezerRateLosssDoorClosed() {
+		return freezerRateLosssDoorClosed;
+	}
+	
+	public int getFreezerTemp() {
+		return currentFreezerTemp;
+	}
+	
+	public int getFridgeTemp() {
+		return currentFridgeTemp;
+	}
+	
+	public void setAmbientTemp(int temperature) {
+		ambientTemp = temperature;
 	}
 
-	public void setFridgeCoolingTemp(int i) {
-		// TODO Auto-generated method stub
-
+	public void setFreezerRateLossDoorOpen(int freezerRateLossDoorOpen) {
+		this.freezerRateLossDoorOpen = freezerRateLossDoorOpen;
 	}
 
-	public void setFridgeWarmingTemp(int i) {
-		// TODO Auto-generated method stub
-		
+	public void setFreezerRateLosssDoorClosed(int freezerRateLosssDoorClosed) {
+		this.freezerRateLosssDoorClosed = freezerRateLosssDoorClosed;
 	}
 
-	public void setFridgeState(FridgeState freezerState) {
-		// TODO Auto-generated method stub
-		
+	public void setFridgeRateLossDoorClosed(int fridgeRateLossDoorClosed) {
+		this.fridgeRateLossDoorClosed = fridgeRateLossDoorClosed;
 	}
 
-	public FridgeState getIdleFridgeDoorOpen() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setFridgeRateLossDoorOpen(int fridgeRateLossDoorOpen) {
+		this.fridgeRateLossDoorOpen = fridgeRateLossDoorOpen;
 	}
 
-	public int getFridgeRateLossDoorClosed() {
-		// TODO Auto-generated method stub
-		return 0;
+	public void setUserFreezerTemp(int temperature) {
+		userFreezerTemp = temperature;
 	}
 
-	public FridgeState getIdleFridgeDoorClosed() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setUserFridgeTemp(int temperature) {
+		userFridgeTemp = temperature;
 	}
-
-	public int getFreezerRateLossDoorClosed() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public FreezerState getIdleFreezerDoorClosed() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
 
 }
