@@ -1,12 +1,169 @@
 package src;
+
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GUIDisplay implements ActionListener {
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
+
+	private static SimpleDisplay frame;
+
+	private GUIDisplay() {
+		frame = new SimpleDisplay();
+		initialize();
+	}
+
+	/**
+	* 
+	*/
+	private class SimpleDisplay extends JFrame {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		private JLabel roomTemp = new JLabel("Room Temp");
+		private JLabel desiredFridgeTemp = new JLabel("Desired Fridge Temp");
+		private JLabel desiredFreezerTemp = new JLabel("Desired Freezer Temp");
+		private JTextField newRoomTemp = new JTextField(3);
+		private JTextField newFridgeTemp = new JTextField(3);
+		private JTextField newFreezerTemp = new JTextField(3);
+		private JButton setRoomTemp = new JButton("Set Room Temp");
+		private JButton setFridgeTemp = new JButton("Set Fridge Temp");
+		private JButton setFreezerTemp = new JButton("Set Freezer Temp");
+		private JButton fridgeDoorCloser = new JButton("Close Fridge Door");
+		private JButton fridgeDoorOpener = new JButton("Open Fridge Door");
+		private JButton freezerDoorCloser = new JButton("Close Freezer Door");
+		private JButton freezerDoorOpener = new JButton("Open Freezer Door");
+		private JLabel status = new JLabel("Status");
+		private JLabel fridgeDoorStatus = new JLabel("Fridge Light Off");
+		private JLabel freezerDoorStatus = new JLabel("Freezer Light Off");
+		private JLabel fridgeTempStatus = new JLabel("Fridge temp    ");
+		private JLabel freezerTempStatus = new JLabel("Freezer temp    ");
+		private JLabel fridgeCoolingStatus = new JLabel("Fridge idle");
+		private JLabel freezerCoolingStatus = new JLabel("Freezer idle");
+
+		/**
+		 * Do the usual layout of the frame
+		 */
+		public SimpleDisplay() {
+			super("Refrigerator");
+			getContentPane().setLayout(new FlowLayout());
+			getContentPane().add(roomTemp);
+			getContentPane().add(newRoomTemp);
+			getContentPane().add(setRoomTemp);
+			getContentPane().add(desiredFridgeTemp);
+			getContentPane().add(newFridgeTemp);
+			getContentPane().add(setFridgeTemp);
+			getContentPane().add(desiredFreezerTemp);
+			getContentPane().add(newFreezerTemp);
+			getContentPane().add(setFreezerTemp);
+			getContentPane().add(fridgeDoorOpener);
+			getContentPane().add(fridgeDoorCloser);
+			getContentPane().add(freezerDoorOpener);
+			getContentPane().add(freezerDoorCloser);
+			getContentPane().add(status);
+			getContentPane().add(fridgeDoorStatus);
+			getContentPane().add(freezerDoorStatus);
+			getContentPane().add(fridgeTempStatus);
+			getContentPane().add(freezerTempStatus);
+			getContentPane().add(fridgeCoolingStatus);
+			getContentPane().add(freezerCoolingStatus);
+			fridgeDoorCloser.addActionListener(GUIDisplay.this);
+			fridgeDoorOpener.addActionListener(GUIDisplay.this);
+			freezerDoorCloser.addActionListener(GUIDisplay.this);
+			freezerDoorOpener.addActionListener(GUIDisplay.this);
+			pack();
+			setVisible(true);
+		}
+	}
+
+	/**
+	 * Process the door buttons (closer and opener) and cook button by simply
+	 * calling the Microwave object's methods.
+	 * 
+	 */
+	@Override
+	public void actionPerformed(ActionEvent event) {
+		if (event.getSource().equals(frame.fridgeDoorCloser)) {
+			FridgeContext.instance().processEvent(FridgeContext.Events.FRIDGE_DOOR_CLOSED_EVENT);
+		} else if (event.getSource().equals(frame.fridgeDoorOpener)) {
+			FridgeContext.instance().processEvent(FridgeContext.Events.FRIDGE_DOOR_OPENED_EVENT);
+		} else if (event.getSource().equals(frame.freezerDoorCloser)) {
+			FridgeContext.instance().processEvent(FreezerContext.Events.FREEZER_DOOR_CLOSED_EVENT);
+		} else if (event.getSource().equals(frame.freezerDoorOpener)) {
+			FridgeContext.instance().processEvent(FreezerContext.Events.FREEZER_DOOR_OPENED_EVENT);
+		}
+	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+	public void turnFridgeLightOn() {
+		frame.fridgeDoorStatus.setText("Light On");
+	}
 
+	@Override
+	public void turnFridgeLightOff() {
+		frame.fridgeDoorStatus.setText("Light Off");
+	}
+
+	@Override
+	public void fridgeDoorOpened() {
+		turnFridgeLightOn();
+
+	}
+
+	@Override
+	public void fridgeDoorClosed() {
+		turnFridgeLightOff();
+
+	}
+
+	@Override
+	public void fridgeIdle() {
+		frame.fridgeCoolingStatus.setText("Fridge Idle");
+
+	}
+
+	@Override
+	public void fridgeCooling() {
+		frame.fridgeCoolingStatus.setText("Fridge Cooling");
+	}
+
+	@Override
+	public void turnFreezerLightOn() {
+		frame.freezerDoorStatus.setText("Freezer Light On");
+	}
+
+	@Override
+	public void turnFreezerLightOff() {
+		frame.freezerDoorStatus.setText("Freezer Light Off");
+	}
+
+	@Override
+	public void freezerDoorOpened() {
+		turnFreezerLightOn();
+	}
+
+	@Override
+	public void freezerDoorClosed() {
+		turnFreezerLightOff();
+	}
+
+	@Override
+	public void freezerIdle() {
+		frame.freezerCoolingStatus.setText("Freezer Idle");
+	}
+
+	@Override
+	public void freezerCooling() {
+		frame.freezerCoolingStatus.setText("Freezer Cooling");
+	}
+
+	public static void main(String[] args) {
+		RefrigeratorDisplay display = new GUIDisplay();
 	}
 }

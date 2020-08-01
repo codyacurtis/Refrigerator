@@ -1,14 +1,16 @@
 package src;
+
 public class CoolingFridgeDoorClosed implements FridgeState {
 
-	private Refrigerator refrigerator ;
-	private final int  rateOfChange;
+	private Refrigerator refrigerator;
+	private final int rateOfChange;
 	private final boolean cooler = true;
+
 	public CoolingFridgeDoorClosed(Refrigerator fridge) {
 		refrigerator = fridge;
 		rateOfChange = fridge.getFridgeCoolerRate();
 	}
-	
+
 	@Override
 	public void openDoor() {
 		refrigerator.setFridgeState(refrigerator.getIdleFridgeDoorOpen());
@@ -27,6 +29,12 @@ public class CoolingFridgeDoorClosed implements FridgeState {
 	@Override
 	public boolean getCooling() {
 		return cooler;
+	}
+
+	@Override
+	public void handle(Object arg) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

@@ -1,14 +1,16 @@
 package src;
+
 public class IdleFridgeDoorClosed implements FridgeState {
 
-	private Refrigerator refrigerator ;
-	private final int  rateOfChange;
+	private Refrigerator refrigerator;
+	private final int rateOfChange;
 	private final boolean cooler = false;
+
 	public IdleFridgeDoorClosed(Refrigerator fridge) {
 		refrigerator = fridge;
 		rateOfChange = fridge.getFridgeRateLossDoorClosed();
 	}
-	
+
 	@Override
 	public void openDoor() {
 		refrigerator.setFridgeState(refrigerator.getIdleFridgeDoorOpen());
@@ -16,7 +18,7 @@ public class IdleFridgeDoorClosed implements FridgeState {
 
 	@Override
 	public void closeDoor() {
-		//Do nothing
+		// Do nothing
 	}
 
 	@Override
@@ -27,6 +29,17 @@ public class IdleFridgeDoorClosed implements FridgeState {
 	@Override
 	public boolean getCooling() {
 		return cooler;
+	}
+
+	public static Object instance() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void handle(Object arg) {
+		// TODO Auto-generated method stub
+
 	}
 
 }
