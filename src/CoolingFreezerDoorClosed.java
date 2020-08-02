@@ -48,4 +48,10 @@ public class CoolingFreezerDoorClosed implements FreezerState {
 		return "CoolingFreezerDoorClosed";
 	}
 
+	@Override
+	public String getLight() {
+		return "Light Off";
+	}
+	
+
 }

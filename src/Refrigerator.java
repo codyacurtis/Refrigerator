@@ -19,9 +19,6 @@ public class Refrigerator {
 	private final int freezerRateLossDoorOpen = 1;
 	private final int freezerCoolRate = 30;
 
-	private int defaultFridgeTemp;
-	private int defaultFreezerTemp;
-
 	private int userFridgeTemp;
 	private int userFreezerTemp;
 
@@ -29,9 +26,12 @@ public class Refrigerator {
 	private int currentFreezerTemp = -5;
 	private int fridgeLow = 37;
 	private int fridgeHigh = 41;
-	private int freezerLow = -9;
+	private int freezerLow = 8;
 	private int freezerHigh = 0;
 	private int ambientTemp = 65;
+	private int desiredFridgeTemp = 39;
+	private int desiredFreezerTemp = 4;
+	private int allowableDifferance = 2;
 
 	private int fridgeSeconds = 0;
 	private int freezerSeconds = 0;
@@ -65,8 +65,7 @@ public class Refrigerator {
 		this.fridgeState = idleFridgeDoorClosed;
 
 	}
-	
-	
+
 	public void clockTicked() {
 		// This will be triggered every second
 		// Very similar to a run method
@@ -74,11 +73,15 @@ public class Refrigerator {
 		// Updates the temp
 		if (fridgeState.getRateOfChange() <= fridgeSeconds) {
 			fridgeSeconds = 0;
-			currentFridgeTemp = (fridgeState.getCooling()) ? currentFridgeTemp - 1 : currentFridgeTemp + 1;
+			if (currentFridgeTemp < ambientTemp) {
+				currentFridgeTemp = (fridgeState.getCooling()) ? currentFridgeTemp - 1 : currentFridgeTemp + 1;
+			}
 		}
 		if (freezerState.getRateOfChange() <= freezerSeconds) {
 			freezerSeconds = 0;
-			currentFreezerTemp = (freezerState.getCooling()) ? currentFreezerTemp - 1 : currentFreezerTemp + 1;
+			if (currentFreezerTemp < ambientTemp) {
+				currentFreezerTemp = (freezerState.getCooling()) ? currentFreezerTemp - 1 : currentFreezerTemp + 1;
+			}
 		}
 		fridgeSeconds++;
 		freezerSeconds++;
@@ -241,13 +244,33 @@ public class Refrigerator {
 	public void setFreezerCooling(boolean freezerCooling) {
 		this.freezerCooling = freezerCooling;
 	}
-	
+
 	public String getFridgeCooling() {
-		return fridgeCooling ? "Fridge Cooling":"Fridge Not Cooling";
+		return fridgeCooling ? "Fridge Cooling" : "Fridge Not Cooling";
 	}
-	
+
 	public String getFreezerCooling() {
-		return freezerCooling ? "Freezer Cooling":"Freezer Not cooling";
+		return freezerCooling ? "Freezer Cooling" : "Freezer Not cooling";
+	}
+
+	public int getDesiredFridgeTemp() {
+		return desiredFridgeTemp;
+	}
+
+	public int getDesiredFreezerTemp() {
+		return desiredFreezerTemp;
+	}
+
+	public void setDesiredFridgeTemp(int desiredFridgeTemp) {
+		this.fridgeHigh = desiredFridgeTemp + allowableDifferance;
+		this.fridgeLow = desiredFridgeTemp - allowableDifferance;
+		this.desiredFridgeTemp = desiredFridgeTemp;
+	}
+
+	public void setDesiredFreezerTemp(int desiredFreezerTemp) {
+		this.freezerHigh = desiredFreezerTemp + allowableDifferance;
+		this.freezerLow = desiredFreezerTemp - allowableDifferance;
+		this.desiredFreezerTemp = desiredFreezerTemp;
 	}
 
 }

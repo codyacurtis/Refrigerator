@@ -47,4 +47,8 @@ public class IdleFridgeDoorClosed implements FridgeState {
 		return "IdleFridgeDoorClosed";
 	}
 
+	@Override
+	public String getLight() {
+		return "Light Off";
+	}
 }

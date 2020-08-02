@@ -10,4 +10,6 @@ public interface FridgeState {
 	boolean getCooling();
 
 	void handle(Object arg);
+	
+	String getLight();
 }

@@ -48,5 +48,10 @@ public class IdleFreezerDoorOpen implements FreezerState {
 	public String toString() {
 		return "IdleFreezerDoorOpen";
 	}
+	
+	@Override
+	public String getLight() {
+		return "Light On";
+	}
 
 }
