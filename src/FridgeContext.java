@@ -34,7 +34,6 @@ public class FridgeContext implements Observer {
 	}
 
 	private void changeCurrentState(Object instance2) {
-		// TODO Auto-generated method stub
 
 	}
 
