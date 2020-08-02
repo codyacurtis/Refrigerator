@@ -2,6 +2,10 @@ package src;
 
 public class Refrigerator {
 
+	public static enum Events {
+		FRIDGE_DOOR_CLOSED_EVENT, FRIDGE_DOOR_OPENED_EVENT, FREEZER_DOOR_CLOSED_EVENT, FREEZER_DOOR_OPENED_EVENT
+	};
+
 	private FreezerState freezerState;
 	private FridgeState fridgeState;
 
@@ -45,6 +49,7 @@ public class Refrigerator {
 	private boolean fridgeDoorOpen = false;
 	private boolean freezerDoorOpen = false;
 	private static Refrigerator refrigerator;
+	private RefrigeratorDisplay display;
 
 	public static Refrigerator instance() {
 		if (refrigerator == null) {
@@ -63,6 +68,9 @@ public class Refrigerator {
 
 		this.freezerState = idleFreezerDoorClosed;
 		this.fridgeState = idleFridgeDoorClosed;
+
+		display = new GUIDisplay();
+		display.setRefrigerator(this);
 
 	}
 
@@ -98,6 +106,13 @@ public class Refrigerator {
 		} else if (currentFreezerTemp < freezerLow && !freezerDoorOpen) {
 			setFreezerState(idleFreezerDoorClosed);
 		}
+
+		display.setFridgeDoorStatus();
+		display.setFreezerDoorStatus();
+		display.fridgeTempStatus();
+		display.freezerTempStatus();
+		display.fridgeCoolingStatus();
+		display.freezerCoolingStatus();
 
 	}
 
@@ -246,11 +261,19 @@ public class Refrigerator {
 	}
 
 	public String getFridgeCooling() {
-		return fridgeCooling ? "Fridge Cooling" : "Fridge Not Cooling";
+		return fridgeCooling ? "Fridge Cooling" : "Fridge Idle";
 	}
 
 	public String getFreezerCooling() {
-		return freezerCooling ? "Freezer Cooling" : "Freezer Not cooling";
+		return freezerCooling ? "Freezer Cooling" : "Freezer Idle";
+	}
+
+	public String getFridgeLight() {
+		return fridgeState.getLight();
+	}
+
+	public String getFreezerLight() {
+		return freezerState.getLight();
 	}
 
 	public int getDesiredFridgeTemp() {
@@ -271,6 +294,10 @@ public class Refrigerator {
 		this.freezerHigh = desiredFreezerTemp + allowableDifferance;
 		this.freezerLow = desiredFreezerTemp - allowableDifferance;
 		this.desiredFreezerTemp = desiredFreezerTemp;
+	}
+
+	public static void main(String[] args) {
+		Clock clock = new Clock();
 	}
 
 }

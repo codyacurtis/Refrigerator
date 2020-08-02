@@ -11,8 +11,6 @@ public interface FreezerState {
 
 	void handle(Object arg);
 
-	void run();
-	
 	String getLight();
 
 }

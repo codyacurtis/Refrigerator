@@ -38,20 +38,13 @@ public class CoolingFreezerDoorClosed implements FreezerState {
 	}
 
 	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-
-	}
-	
-	@Override
 	public String toString() {
-		return "CoolingFreezerDoorClosed";
+		return "Freezer Door Closed";
 	}
 
 	@Override
 	public String getLight() {
 		return "Light Off";
 	}
-	
 
 }

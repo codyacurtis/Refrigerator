@@ -16,7 +16,6 @@ public class FreezerContext implements Observer {
 
 	static {
 		instance = new FreezerContext();
-		refrigeratorDisplay = RefrigeratorDisplay.instance();
 	}
 
 	private FreezerContext() {
@@ -44,7 +43,7 @@ public class FreezerContext implements Observer {
 
 	public void changeCurrentState(FreezerState nextState) {
 		freezerState = nextState;
-		nextState.run();
+		// nextState.run();
 	}
 
 }

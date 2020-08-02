@@ -1,4 +1,5 @@
 package src;
+
 /**
  * 
  * @author Brahma Dathan and Sarnath Ramnath
@@ -44,4 +45,3 @@ public class Clock implements Runnable {
 		}
 	}
 }
-

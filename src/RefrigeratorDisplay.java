@@ -1,28 +1,8 @@
 package src;
 
-import java.util.Observable;
+public interface RefrigeratorDisplay {
 
-@SuppressWarnings("deprecation")
-public abstract class RefrigeratorDisplay extends Observable {
-
-	protected static FreezerContext freezerContext;
-	protected static FridgeContext fridgeContext;
-	protected static RefrigeratorDisplay instance;
-
-	protected RefrigeratorDisplay() {
-		instance = this;
-		fridgeContext = FridgeContext.instance();
-		freezerContext = FreezerContext.instance();
-	}
-
-	public static RefrigeratorDisplay instance() {
-		return instance;
-	}
-
-	public void initialize() {
-		fridgeContext.initialize();
-		freezerContext.initialize();
-	}
+	public void setRefrigerator(Refrigerator refrigerator);
 
 	public abstract void turnFridgeLightOn();
 
@@ -47,5 +27,17 @@ public abstract class RefrigeratorDisplay extends Observable {
 	public abstract void freezerIdle();
 
 	public abstract void freezerCooling();
+
+	public void setFridgeDoorStatus();
+
+	public void setFreezerDoorStatus();
+
+	public void fridgeTempStatus();
+
+	public void freezerTempStatus();
+
+	public void fridgeCoolingStatus();
+
+	public void freezerCoolingStatus();
 
 }

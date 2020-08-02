@@ -16,7 +16,6 @@ public class FridgeContext implements Observer {
 
 	static {
 		instance = new FridgeContext();
-		refrigeratorDisplay = RefrigeratorDisplay.instance();
 	}
 
 	private FridgeContext() {
