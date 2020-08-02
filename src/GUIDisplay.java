@@ -46,12 +46,12 @@ public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 		private JButton freezerDoorCloser = new JButton("Close Freezer Door");
 		private JButton freezerDoorOpener = new JButton("Open Freezer Door");
 		private JLabel status = new JLabel("Status");
-		private JLabel fridgeDoorStatus = new JLabel(refrigerator.getFreezerState().toString());
-		private JLabel freezerDoorStatus = new JLabel(refrigerator.getFridgeState().toString());
+		private JLabel fridgeDoorStatus = new JLabel("Fridge Light On");
+		private JLabel freezerDoorStatus = new JLabel("Freezer Light Off");
 		private JLabel fridgeTempStatus = new JLabel("Fridge temp " + refrigerator.getFridgeTemp());
 		private JLabel freezerTempStatus = new JLabel("Freezer temp " + refrigerator.getFreezerTemp());
-		private JLabel fridgeCoolingStatus = new JLabel("Fridge idle");
-		private JLabel freezerCoolingStatus = new JLabel("Freezer idle");
+		private JLabel fridgeCoolingStatus = new JLabel(refrigerator.getFridgeCooling());
+		private JLabel freezerCoolingStatus = new JLabel(refrigerator.getFreezerCooling());
 
 		/**
 		 * Do the usual layout of the frame

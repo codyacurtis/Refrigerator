@@ -48,9 +48,4 @@ public abstract class RefrigeratorDisplay extends Observable {
 
 	public abstract void freezerCooling();
 
-	public abstract void setRoomTemp();
-
-	public abstract void setFridgeTemp();
-
-	public abstract void setFreezerTemp();
 }
