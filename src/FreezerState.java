@@ -12,13 +12,7 @@ public interface FreezerState {
 	void handle(Object arg);
 
 	void run();
-<<<<<<< HEAD
 	
 	String getLight();
-=======
 
-	String getCoolingState();
-
-	String getLightState();
->>>>>>> branch 'master' of https://github.com/codyacurtis/Refrigerator.git
 }
