@@ -75,6 +75,10 @@ public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 			addComp(updatePanel, newFreezerTemp, 1, 2, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE);
 			addComp(updatePanel, setFreezerTemp, 2, 2, 1, 1, GridBagConstraints.WEST, GridBagConstraints.NONE);
 
+			setRoomTemp.addActionListener(GUIDisplay.this);
+			setFridgeTemp.addActionListener(GUIDisplay.this);
+			setFreezerTemp.addActionListener(GUIDisplay.this);
+
 			addComp(thePanel, updatePanel, 0, 0, 1, 1, GridBagConstraints.WEST, GridBagConstraints.NONE);
 
 			JPanel stateButtons = new JPanel();
@@ -84,6 +88,10 @@ public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 			addComp(stateButtons, fridgeDoorCloser, 1, 0, 1, 1, GridBagConstraints.EAST, GridBagConstraints.NONE);
 			addComp(stateButtons, freezerDoorOpener, 0, 1, 1, 1, GridBagConstraints.WEST, GridBagConstraints.NONE);
 			addComp(stateButtons, freezerDoorCloser, 1, 1, 1, 1, GridBagConstraints.EAST, GridBagConstraints.NONE);
+			fridgeDoorOpener.addActionListener(GUIDisplay.this);
+			fridgeDoorCloser.addActionListener(GUIDisplay.this);
+			freezerDoorOpener.addActionListener(GUIDisplay.this);
+			freezerDoorCloser.addActionListener(GUIDisplay.this);
 
 			addComp(thePanel, stateButtons, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE);
 
