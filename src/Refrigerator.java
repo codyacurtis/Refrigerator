@@ -18,7 +18,6 @@ public class Refrigerator {
 	private final int freezerRateLossDoorClosed = 10;
 	private final int freezerRateLossDoorOpen = 1;
 	private final int freezerCoolRate = 30;
- 
 
 	private int defaultFridgeTemp;
 	private int defaultFreezerTemp;
@@ -70,8 +69,8 @@ public class Refrigerator {
 	public void clockTicked() {
 		// This will be triggered every second
 		// Very similar to a run method
-		
-		//Updates the temp
+
+		// Updates the temp
 		if (fridgeState.getRateOfChange() <= fridgeSeconds) {
 			fridgeSeconds = 0;
 			currentFridgeTemp = (fridgeState.getCooling()) ? currentFridgeTemp - 1 : currentFridgeTemp + 1;
@@ -82,21 +81,19 @@ public class Refrigerator {
 		}
 		fridgeSeconds++;
 		freezerSeconds++;
-		
-		//Turn on the cooling on or off if the temp is too high or too low
-		if(currentFridgeTemp >fridgeHigh && !fridgeDoorOpen) {
+
+		// Turn on the cooling on or off if the temp is too high or too low
+		if (currentFridgeTemp > fridgeHigh && !fridgeDoorOpen) {
 			setFridgeState(coolingFridgeDoorClosed);
-		}else if(currentFridgeTemp < fridgeLow && !fridgeDoorOpen) {
+		} else if (currentFridgeTemp < fridgeLow && !fridgeDoorOpen) {
 			setFridgeState(idleFridgeDoorClosed);
 		}
-		
-		if(currentFreezerTemp >freezerHigh && !freezerDoorOpen) {
+
+		if (currentFreezerTemp > freezerHigh && !freezerDoorOpen) {
 			setFreezerState(coolingFreezerDoorClosed);
-		}else if(currentFreezerTemp < freezerLow && !freezerDoorOpen) {
+		} else if (currentFreezerTemp < freezerLow && !freezerDoorOpen) {
 			setFreezerState(idleFreezerDoorClosed);
 		}
-		
-		
 
 	}
 
@@ -183,7 +180,7 @@ public class Refrigerator {
 	public int getFridgeCoolerRate() {
 		return fridgeCoolRate;
 	}
-	
+
 	public int getFreezerCoolerRate() {
 		return freezerCoolRate;
 	}
