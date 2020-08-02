@@ -65,7 +65,8 @@ public class Refrigerator {
 		this.fridgeState = idleFridgeDoorClosed;
 
 	}
-
+	
+	
 	public void clockTicked() {
 		// This will be triggered every second
 		// Very similar to a run method
@@ -239,6 +240,14 @@ public class Refrigerator {
 
 	public void setFreezerCooling(boolean freezerCooling) {
 		this.freezerCooling = freezerCooling;
+	}
+	
+	public String getFridgeCooling() {
+		return fridgeCooling ? "Fridge Cooling":"Fridge Not Cooling";
+	}
+	
+	public String getFreezerCooling() {
+		return freezerCooling ? "Freezer Cooling":"Freezer Not cooling";
 	}
 
 }
