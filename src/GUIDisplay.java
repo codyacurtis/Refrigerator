@@ -1,12 +1,16 @@
 package src;
 
-import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
@@ -52,33 +56,78 @@ public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 		 */
 		public SimpleDisplay() {
 			super("Refrigerator");
-			getContentPane().setLayout(new FlowLayout());
-			getContentPane().add(roomTemp);
-			getContentPane().add(newRoomTemp);
-			getContentPane().add(setRoomTemp);
-			getContentPane().add(desiredFridgeTemp);
-			getContentPane().add(newFridgeTemp);
-			getContentPane().add(setFridgeTemp);
-			getContentPane().add(desiredFreezerTemp);
-			getContentPane().add(newFreezerTemp);
-			getContentPane().add(setFreezerTemp);
-			getContentPane().add(fridgeDoorOpener);
-			getContentPane().add(fridgeDoorCloser);
-			getContentPane().add(freezerDoorOpener);
-			getContentPane().add(freezerDoorCloser);
-			getContentPane().add(status);
-			getContentPane().add(fridgeDoorStatus);
-			getContentPane().add(freezerDoorStatus);
-			getContentPane().add(fridgeTempStatus);
-			getContentPane().add(freezerTempStatus);
-			getContentPane().add(fridgeCoolingStatus);
-			getContentPane().add(freezerCoolingStatus);
-			fridgeDoorCloser.addActionListener(GUIDisplay.this);
-			fridgeDoorOpener.addActionListener(GUIDisplay.this);
-			freezerDoorCloser.addActionListener(GUIDisplay.this);
-			freezerDoorOpener.addActionListener(GUIDisplay.this);
+
+			getContentPane().setLayout(new GridBagLayout());
+
+			JPanel thePanel = new JPanel();
+			thePanel.setLayout(new GridBagLayout());
+
+			JPanel updatePanel = new JPanel();
+			updatePanel.setLayout(new GridBagLayout());
+
+			addComp(updatePanel, roomTemp, 0, 0, 1, 1, GridBagConstraints.EAST, GridBagConstraints.NONE);
+			addComp(updatePanel, newRoomTemp, 1, 0, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE);
+			addComp(updatePanel, setRoomTemp, 2, 0, 1, 1, GridBagConstraints.WEST, GridBagConstraints.NONE);
+			addComp(updatePanel, desiredFridgeTemp, 0, 1, 1, 1, GridBagConstraints.EAST, GridBagConstraints.NONE);
+			addComp(updatePanel, newFridgeTemp, 1, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE);
+			addComp(updatePanel, setFridgeTemp, 2, 1, 1, 1, GridBagConstraints.WEST, GridBagConstraints.NONE);
+			addComp(updatePanel, desiredFreezerTemp, 0, 2, 1, 1, GridBagConstraints.EAST, GridBagConstraints.NONE);
+			addComp(updatePanel, newFreezerTemp, 1, 2, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE);
+			addComp(updatePanel, setFreezerTemp, 2, 2, 1, 1, GridBagConstraints.WEST, GridBagConstraints.NONE);
+
+			addComp(thePanel, updatePanel, 0, 0, 1, 1, GridBagConstraints.WEST, GridBagConstraints.NONE);
+
+			JPanel stateButtons = new JPanel();
+			stateButtons.setLayout(new GridBagLayout());
+
+			addComp(stateButtons, fridgeDoorOpener, 0, 0, 1, 1, GridBagConstraints.WEST, GridBagConstraints.NONE);
+			addComp(stateButtons, fridgeDoorCloser, 1, 0, 1, 1, GridBagConstraints.EAST, GridBagConstraints.NONE);
+			addComp(stateButtons, freezerDoorOpener, 0, 1, 1, 1, GridBagConstraints.WEST, GridBagConstraints.NONE);
+			addComp(stateButtons, freezerDoorCloser, 1, 1, 1, 1, GridBagConstraints.EAST, GridBagConstraints.NONE);
+
+			addComp(thePanel, stateButtons, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE);
+
+			addComp(thePanel, status, 0, 2, 1, 1, GridBagConstraints.WEST, GridBagConstraints.NONE);
+
+			JPanel refrigeratorStatus = new JPanel();
+			refrigeratorStatus.setLayout(new GridBagLayout());
+
+			addComp(refrigeratorStatus, fridgeDoorStatus, 0, 0, 1, 1, GridBagConstraints.WEST, GridBagConstraints.NONE);
+			addComp(refrigeratorStatus, freezerDoorStatus, 1, 0, 1, 1, GridBagConstraints.WEST,
+					GridBagConstraints.NONE);
+			addComp(refrigeratorStatus, fridgeTempStatus, 0, 1, 1, 1, GridBagConstraints.WEST, GridBagConstraints.NONE);
+			addComp(refrigeratorStatus, freezerTempStatus, 1, 1, 1, 1, GridBagConstraints.WEST,
+					GridBagConstraints.NONE);
+			addComp(refrigeratorStatus, fridgeCoolingStatus, 0, 2, 1, 1, GridBagConstraints.WEST,
+					GridBagConstraints.NONE);
+			addComp(refrigeratorStatus, freezerCoolingStatus, 1, 2, 1, 1, GridBagConstraints.WEST,
+					GridBagConstraints.NONE);
+
+			addComp(thePanel, refrigeratorStatus, 0, 3, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE);
+
+			this.add(thePanel);
+
 			pack();
 			setVisible(true);
+
+		}
+
+		private void addComp(JPanel thePanel, JComponent comp, int xPos, int yPos, int compWidth, int compHeight,
+				int anchor, int strech) {
+
+			GridBagConstraints gridConstraints = new GridBagConstraints();
+
+			gridConstraints.gridx = xPos;
+			gridConstraints.gridy = yPos;
+			gridConstraints.gridwidth = compWidth;
+			gridConstraints.gridheight = compHeight;
+			gridConstraints.weightx = 100;
+			gridConstraints.weighty = 100;
+			gridConstraints.insets = new Insets(5, 5, 5, 5);
+			gridConstraints.anchor = anchor;
+			gridConstraints.fill = strech;
+
+			thePanel.add(comp, gridConstraints);
 		}
 	}
 
