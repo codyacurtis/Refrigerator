@@ -16,8 +16,10 @@ import javax.swing.JTextField;
 public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 
 	private static SimpleDisplay frame;
+	private Refrigerator refrigerator;
 
 	private GUIDisplay() {
+		refrigerator = Refrigerator.instance();
 		frame = new SimpleDisplay();
 		initialize();
 	}
@@ -44,10 +46,10 @@ public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 		private JButton freezerDoorCloser = new JButton("Close Freezer Door");
 		private JButton freezerDoorOpener = new JButton("Open Freezer Door");
 		private JLabel status = new JLabel("Status");
-		private JLabel fridgeDoorStatus = new JLabel("Fridge Light Off");
-		private JLabel freezerDoorStatus = new JLabel("Freezer Light Off");
-		private JLabel fridgeTempStatus = new JLabel("Fridge temp    ");
-		private JLabel freezerTempStatus = new JLabel("Freezer temp    ");
+		private JLabel fridgeDoorStatus = new JLabel(refrigerator.getFreezerState().toString());
+		private JLabel freezerDoorStatus = new JLabel(refrigerator.getFridgeState().toString());
+		private JLabel fridgeTempStatus = new JLabel("Fridge temp " + refrigerator.getFridgeTemp());
+		private JLabel freezerTempStatus = new JLabel("Freezer temp " + refrigerator.getFreezerTemp());
 		private JLabel fridgeCoolingStatus = new JLabel("Fridge idle");
 		private JLabel freezerCoolingStatus = new JLabel("Freezer idle");
 
@@ -155,11 +157,14 @@ public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 		} else if (event.getSource().equals(frame.freezerDoorOpener)) {
 			FreezerContext.instance().processEvent(FreezerContext.Events.FREEZER_DOOR_OPENED_EVENT);
 		} else if (event.getSource().equals(frame.setRoomTemp)) {
-			Refrigerator.setAmbientTemp(Integer.parseInt(frame.newRoomTemp.getText()));
+			refrigerator.setAmbientTemp(Integer.parseInt(frame.newRoomTemp.getText()));
+			frame.newRoomTemp.setText(null);
 		} else if (event.getSource().equals(frame.setFridgeTemp)) {
-			Refrigerator.setFridgeCoolingTemp(Integer.parseInt(frame.newFridgeTemp.getText()));
+			refrigerator.setFridgeCoolingTemp(Integer.parseInt(frame.newFridgeTemp.getText()));
+			frame.newFridgeTemp.setText(null);
 		} else if (event.getSource().equals(frame.setFreezerTemp)) {
-			Refrigerator.setFreezerCoolingTemp(Integer.parseInt(frame.newFreezerTemp.getText()));
+			refrigerator.setFreezerCoolingTemp(Integer.parseInt(frame.newFreezerTemp.getText()));
+			frame.newFreezerTemp.setText(null);
 		}
 	}
 
