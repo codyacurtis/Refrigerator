@@ -151,25 +151,16 @@ public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 		} else if (event.getSource().equals(frame.fridgeDoorOpener)) {
 			FridgeContext.instance().processEvent(FridgeContext.Events.FRIDGE_DOOR_OPENED_EVENT);
 		} else if (event.getSource().equals(frame.freezerDoorCloser)) {
-			FridgeContext.instance().processEvent(FreezerContext.Events.FREEZER_DOOR_CLOSED_EVENT);
+			FreezerContext.instance().processEvent(FreezerContext.Events.FREEZER_DOOR_CLOSED_EVENT);
 		} else if (event.getSource().equals(frame.freezerDoorOpener)) {
-			FridgeContext.instance().processEvent(FreezerContext.Events.FREEZER_DOOR_OPENED_EVENT);
+			FreezerContext.instance().processEvent(FreezerContext.Events.FREEZER_DOOR_OPENED_EVENT);
+		} else if (event.getSource().equals(frame.setRoomTemp)) {
+			Refrigerator.setAmbientTemp(Integer.parseInt(frame.newRoomTemp.getText()));
+		} else if (event.getSource().equals(frame.setFridgeTemp)) {
+			Refrigerator.setFridgeCoolingTemp(Integer.parseInt(frame.newFridgeTemp.getText()));
+		} else if (event.getSource().equals(frame.setFreezerTemp)) {
+			Refrigerator.setFreezerCoolingTemp(Integer.parseInt(frame.newFreezerTemp.getText()));
 		}
-	}
-
-	@Override
-	public void setRoomTemp() {
-		Refrigerator.setAmbientTemp(newRoomTemp.getText());
-	}
-
-	@Override
-	public void setFridgeTemp() {
-		Refrigerator.setFridgeCoolingTemp(newFridgeTemp.getText());
-	}
-
-	@Override
-	public void setFreezerTemp() {
-		Refrigerator.setFreezerCoolingTemp(newFreezerTemp.getText());
 	}
 
 	@Override
