@@ -42,4 +42,5 @@ public class IdleFridgeDoorOpen implements FridgeState {
 	public String toString() {
 		return "IdleFridgeDoorOpen";
 	}
+	//Tets
 }
