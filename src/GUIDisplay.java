@@ -79,7 +79,7 @@ public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 			setFridgeTemp.addActionListener(GUIDisplay.this);
 			setFreezerTemp.addActionListener(GUIDisplay.this);
 
-			addComp(thePanel, updatePanel, 0, 0, 1, 1, GridBagConstraints.WEST, GridBagConstraints.NONE);
+			addComp(thePanel, updatePanel, 0, 0, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE);
 
 			JPanel stateButtons = new JPanel();
 			stateButtons.setLayout(new GridBagLayout());
@@ -95,7 +95,7 @@ public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 
 			addComp(thePanel, stateButtons, 0, 1, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE);
 
-			addComp(thePanel, status, 0, 2, 1, 1, GridBagConstraints.WEST, GridBagConstraints.NONE);
+			addComp(thePanel, status, 0, 2, 1, 1, GridBagConstraints.CENTER, GridBagConstraints.NONE);
 
 			JPanel refrigeratorStatus = new JPanel();
 			refrigeratorStatus.setLayout(new GridBagLayout());
@@ -155,6 +155,21 @@ public class GUIDisplay extends RefrigeratorDisplay implements ActionListener {
 		} else if (event.getSource().equals(frame.freezerDoorOpener)) {
 			FridgeContext.instance().processEvent(FreezerContext.Events.FREEZER_DOOR_OPENED_EVENT);
 		}
+	}
+
+	@Override
+	public void setRoomTemp() {
+		Refrigerator.setAmbientTemp(newRoomTemp.getText());
+	}
+
+	@Override
+	public void setFridgeTemp() {
+		Refrigerator.setFridgeCoolingTemp(newFridgeTemp.getText());
+	}
+
+	@Override
+	public void setFreezerTemp() {
+		Refrigerator.setFreezerCoolingTemp(newFreezerTemp.getText());
 	}
 
 	@Override
