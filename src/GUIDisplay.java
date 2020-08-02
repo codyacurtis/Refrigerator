@@ -129,12 +129,16 @@ public class GUIDisplay extends JFrame implements ActionListener, RefrigeratorDi
 	public void actionPerformed(ActionEvent event) {
 		if (event.getSource().equals(this.fridgeDoorCloser)) {
 			refrigerator.setFridgeState(refrigerator.getIdleFridgeDoorClosed());
+			fridgeDoorClosed();
 		} else if (event.getSource().equals(this.fridgeDoorOpener)) {
 			refrigerator.setFridgeState(refrigerator.getIdleFridgeDoorOpen());
+			fridgeDoorOpened();
 		} else if (event.getSource().equals(this.freezerDoorCloser)) {
 			refrigerator.setFreezerState(refrigerator.getIdleFreezerDoorClosed());
+			freezerDoorClosed();
 		} else if (event.getSource().equals(this.freezerDoorOpener)) {
 			refrigerator.setFreezerState(refrigerator.getIdleFreezerDoorOpen());
+			freezerDoorOpened();
 		} else if (event.getSource().equals(this.setRoomTemp)) {
 			refrigerator.setAmbientTemp(Integer.parseInt(this.newRoomTemp.getText()));
 			this.newRoomTemp.setText(null);
@@ -168,6 +172,7 @@ public class GUIDisplay extends JFrame implements ActionListener, RefrigeratorDi
 	@Override
 	public void freezerDoorClosed() {
 		turnFreezerLightOff();
+
 	}
 
 	@Override
