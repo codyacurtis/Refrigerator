@@ -42,5 +42,10 @@ public class CoolingFreezerDoorClosed implements FreezerState {
 		// TODO Auto-generated method stub
 
 	}
+	
+	@Override
+	public String toString() {
+		return "CoolingFreezerDoorClosed";
+	}
 
 }

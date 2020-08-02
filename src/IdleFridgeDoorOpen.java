@@ -38,4 +38,8 @@ public class IdleFridgeDoorOpen implements FridgeState {
 
 	}
 
+	@Override
+	public String toString() {
+		return "IdleFridgeDoorOpen";
+	}
 }

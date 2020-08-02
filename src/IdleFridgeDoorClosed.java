@@ -41,5 +41,10 @@ public class IdleFridgeDoorClosed implements FridgeState {
 		// TODO Auto-generated method stub
 
 	}
+	
+	@Override
+	public String toString() {
+		return "IdleFridgeDoorClosed";
+	}
 
 }

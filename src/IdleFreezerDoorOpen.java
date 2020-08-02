@@ -43,5 +43,10 @@ public class IdleFreezerDoorOpen implements FreezerState {
 		// TODO Auto-generated method stub
 
 	}
+	
+	@Override
+	public String toString() {
+		return "IdleFreezerDoorOpen";
+	}
 
 }

@@ -12,8 +12,4 @@ public interface FreezerState {
 	void handle(Object arg);
 
 	void run();
-	
-	void toString() {
-		
-	}
 }
