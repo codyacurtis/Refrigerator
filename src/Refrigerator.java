@@ -97,14 +97,18 @@ public class Refrigerator {
 		// Turn on the cooling on or off if the temp is too high or too low
 		if (currentFridgeTemp > fridgeHigh && !fridgeDoorOpen) {
 			setFridgeState(coolingFridgeDoorClosed);
+			fridgeCooling = true;
 		} else if (currentFridgeTemp < fridgeLow && !fridgeDoorOpen) {
 			setFridgeState(idleFridgeDoorClosed);
+			fridgeDoorOpen = false;
 		}
 
 		if (currentFreezerTemp > freezerHigh && !freezerDoorOpen) {
 			setFreezerState(coolingFreezerDoorClosed);
+			freezerCooling = true;
 		} else if (currentFreezerTemp < freezerLow && !freezerDoorOpen) {
 			setFreezerState(idleFreezerDoorClosed);
+			fridgeDoorOpen = false;
 		}
 
 		display.setFridgeDoorStatus();
@@ -182,10 +186,12 @@ public class Refrigerator {
 
 	public void setFreezerState(FreezerState freezerState) {
 		this.freezerState = freezerState;
+		this.freezerCooling = freezerState.getCooling();
 	}
 
 	public void setFridgeState(FridgeState fridgeState) {
 		this.fridgeState = fridgeState;
+		this.fridgeCooling = fridgeState.getCooling();
 	}
 
 	public int getFridgeRateLossDoorClosed() {
