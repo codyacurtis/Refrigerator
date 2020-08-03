@@ -12,4 +12,6 @@ public interface FridgeState {
 	void handle(Object arg);
 	
 	String getLight();
+	
+	boolean getDoor();
 }

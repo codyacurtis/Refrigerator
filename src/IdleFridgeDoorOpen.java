@@ -47,4 +47,9 @@ public class IdleFridgeDoorOpen implements FridgeState {
 	public String getLight() {
 		return "Light On";
 	}
+	@Override
+	public boolean getDoor() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 }

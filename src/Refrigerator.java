@@ -95,15 +95,15 @@ public class Refrigerator {
 		freezerSeconds++;
 
 		// Turn on the cooling on or off if the temp is too high or too low
-		if (currentFridgeTemp > fridgeHigh && !fridgeDoorOpen) {
+		if (currentFridgeTemp > fridgeHigh && !fridgeState.getDoor()) {
 			setFridgeState(coolingFridgeDoorClosed);
-		} else if (currentFridgeTemp < fridgeLow && !fridgeDoorOpen) {
+		} else if (currentFridgeTemp < fridgeLow && !fridgeState.getDoor()) {
 			setFridgeState(idleFridgeDoorClosed);
 		}
 
-		if (currentFreezerTemp > freezerHigh && !freezerDoorOpen) {
+		if (currentFreezerTemp > freezerHigh && !freezerState.getDoor()) {
 			setFreezerState(coolingFreezerDoorClosed);
-		} else if (currentFreezerTemp < freezerLow && !freezerDoorOpen) {
+		} else if (currentFreezerTemp < freezerLow && !freezerState.getDoor()) {
 			setFreezerState(idleFreezerDoorClosed);
 		}
 

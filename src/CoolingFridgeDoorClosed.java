@@ -46,6 +46,11 @@ public class CoolingFridgeDoorClosed implements FridgeState {
 	public String getLight() {
 		return "Light Off";
 	}
+	@Override
+	public boolean getDoor() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 
 }

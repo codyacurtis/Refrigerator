@@ -12,5 +12,7 @@ public interface FreezerState {
 	void handle(Object arg);
 
 	String getLight();
+	
+	boolean getDoor();
 
 }

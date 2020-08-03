@@ -51,5 +51,10 @@ public class IdleFreezerDoorClosed implements FreezerState {
 	public String getLight() {
 		return "Light Off";
 	}
+	@Override
+	public boolean getDoor() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }

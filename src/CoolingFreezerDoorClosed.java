@@ -47,4 +47,10 @@ public class CoolingFreezerDoorClosed implements FreezerState {
 		return "Light Off";
 	}
 
+	@Override
+	public boolean getDoor() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
