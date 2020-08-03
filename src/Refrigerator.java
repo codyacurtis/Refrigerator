@@ -97,14 +97,26 @@ public class Refrigerator {
 		// Turn on the cooling on or off if the temp is too high or too low
 		if (currentFridgeTemp > fridgeHigh && !fridgeState.getDoor()) {
 			setFridgeState(coolingFridgeDoorClosed);
+<<<<<<< HEAD
 		} else if (currentFridgeTemp < fridgeLow && !fridgeState.getDoor()) {
+=======
+			fridgeCooling = true;
+		} else if (currentFridgeTemp < fridgeLow && !fridgeDoorOpen) {
+>>>>>>> branch 'master' of https://github.com/codyacurtis/Refrigerator.git
 			setFridgeState(idleFridgeDoorClosed);
+			fridgeDoorOpen = false;
 		}
 
 		if (currentFreezerTemp > freezerHigh && !freezerState.getDoor()) {
 			setFreezerState(coolingFreezerDoorClosed);
+<<<<<<< HEAD
 		} else if (currentFreezerTemp < freezerLow && !freezerState.getDoor()) {
+=======
+			freezerCooling = true;
+		} else if (currentFreezerTemp < freezerLow && !freezerDoorOpen) {
+>>>>>>> branch 'master' of https://github.com/codyacurtis/Refrigerator.git
 			setFreezerState(idleFreezerDoorClosed);
+			fridgeDoorOpen = false;
 		}
 
 		display.setFridgeDoorStatus();
@@ -182,10 +194,12 @@ public class Refrigerator {
 
 	public void setFreezerState(FreezerState freezerState) {
 		this.freezerState = freezerState;
+		this.freezerCooling = freezerState.getCooling();
 	}
 
 	public void setFridgeState(FridgeState fridgeState) {
 		this.fridgeState = fridgeState;
+		this.fridgeCooling = fridgeState.getCooling();
 	}
 
 	public int getFridgeRateLossDoorClosed() {
