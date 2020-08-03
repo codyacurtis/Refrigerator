@@ -23,9 +23,6 @@ public class Refrigerator {
 	private final int freezerRateLossDoorOpen = 1;
 	private final int freezerCoolRate = 30;
 
-	private int userFridgeTemp;
-	private int userFreezerTemp;
-
 	private int currentFridgeTemp = 39;
 	private int currentFreezerTemp = 0;
 	private int fridgeLow = 37;
@@ -46,8 +43,6 @@ public class Refrigerator {
 	private boolean fridgeCooling = false;
 	private boolean freezerCooling = false;
 
-	private boolean fridgeDoorOpen = false;
-	private boolean freezerDoorOpen = false;
 	private static Refrigerator refrigerator;
 	private RefrigeratorDisplay display;
 
@@ -97,39 +92,25 @@ public class Refrigerator {
 		// Turn on the cooling on or off if the temp is too high or too low
 		if (currentFridgeTemp > fridgeHigh && !fridgeState.getDoor()) {
 			setFridgeState(coolingFridgeDoorClosed);
-			this.fridgeDoorOpen = false;
 			this.fridgeCooling = true;
 		} else if (currentFridgeTemp < fridgeLow && !fridgeState.getDoor()) {
 			setFridgeState(idleFridgeDoorClosed);
-			this.fridgeDoorOpen = false;
 			this.fridgeCooling = false;
 		}
 
 		if (currentFreezerTemp > freezerHigh && !freezerState.getDoor()) {
 			setFreezerState(coolingFreezerDoorClosed);
-			this.freezerDoorOpen = false;
 			this.freezerCooling = true;
 		} else if (currentFreezerTemp < freezerLow && !freezerState.getDoor()) {
 			setFreezerState(idleFreezerDoorClosed);
-			this.freezerDoorOpen = false;
 			this.freezerCooling = false;
 		}
-
 		display.setFridgeDoorStatus();
 		display.setFreezerDoorStatus();
 		display.fridgeTempStatus();
 		display.freezerTempStatus();
 		display.fridgeCoolingStatus();
 		display.freezerCoolingStatus();
-		System.out.println("Fridge " + getFridgeLight());
-		System.out.println("Freezer " + getFreezerLight());
-		System.out.println("Fridge Temp " + getFridgeTemp());
-		System.out.println("Freezer Temp " + getFreezerTemp());
-		System.out.println(getFridgeCooling());
-		System.out.println(getFreezerCooling());
-		System.out.println(fridgeState);
-		System.out.println(freezerState);
-
 	}
 
 	public CoolingFreezerDoorClosed getCoolingFreezerDoorClosed() {
@@ -190,12 +171,10 @@ public class Refrigerator {
 
 	public void setFreezerState(FreezerState freezerState) {
 		this.freezerState = freezerState;
-		this.freezerCooling = freezerState.getCooling();
 	}
 
 	public void setFridgeState(FridgeState fridgeState) {
 		this.fridgeState = fridgeState;
-		this.fridgeCooling = fridgeState.getCooling();
 	}
 
 	public int getFridgeRateLossDoorClosed() {
@@ -236,14 +215,6 @@ public class Refrigerator {
 
 	public void setAmbientTemp(int temperature) {
 		ambientTemp = temperature;
-	}
-
-	public void setFridgeCoolingTemp(int temperature) {
-		userFridgeTemp = temperature;
-	}
-
-	public void setFreezerCoolingTemp(int temperature) {
-		userFreezerTemp = temperature;
 	}
 
 	public int getFridgeRateOfChange() {
@@ -315,6 +286,7 @@ public class Refrigerator {
 	}
 
 	public static void main(String[] args) {
+		@SuppressWarnings("unused")
 		Clock clock = new Clock();
 	}
 
