@@ -30,8 +30,8 @@ public class Refrigerator {
 	private int currentFreezerTemp = -5;
 	private int fridgeLow = 37;
 	private int fridgeHigh = 41;
-	private int freezerLow = 8;
-	private int freezerHigh = 0;
+	private int freezerLow = -8;
+	private int freezerHigh = -2;
 	private int ambientTemp = 65;
 	private int desiredFridgeTemp = 39;
 	private int desiredFreezerTemp = 4;
@@ -113,6 +113,14 @@ public class Refrigerator {
 		display.freezerTempStatus();
 		display.fridgeCoolingStatus();
 		display.freezerCoolingStatus();
+		System.out.println("Fridge " + getFridgeLight());
+		System.out.println("Freezer " + getFreezerLight());
+		System.out.println("Fridge Temp " + getFridgeTemp());
+		System.out.println("Freezer Temp " + getFreezerTemp());
+		System.out.println(getFridgeCooling());
+		System.out.println(getFreezerCooling());
+		System.out.println(fridgeState);
+		System.out.println(freezerState);
 
 	}
 
